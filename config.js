@@ -20,55 +20,30 @@ const SUBJECTS = [
       // { label: "Google Classroom", url: "" },
     ],
     materials: [
-      {
-        label: "Week 1 – Instructional Materials (Drive folder)",
-        url: "https://docs.google.com/folderview?id=1tyQq4ct3XWERE5Kp9PC3f6v4jnpnhmt_",
-      },
+      { label: "Week 1 – Instructional Materials (Drive folder)", url: "https://docs.google.com/folderview?id=1tyQq4ct3XWERE5Kp9PC3f6v4jnpnhmt_" },
     ],
     recordings: [
-      {
-        label: "Week 1 Recording",
-        url: "https://www.youtube.com/watch?v=t23QCF1NXoE",
-      },
-      {
-        label: "Week 1.2 Recording",
-        url: "https://www.youtube.com/watch?v=n9TbwXuZ5_0",
-      },
-      {
-        label: "Week 1.2 Backup Recording",
-        url: "https://www.youtube.com/watch?v=EkU0H9PDALY",
-      },
+      { label: "Week 1 Recording", url: "https://www.youtube.com/watch?v=t23QCF1NXoE" },
+      { label: "Week 1.2 Recording", url: "https://www.youtube.com/watch?v=n9TbwXuZ5_0" },
+      { label: "Week 1.2 Backup Recording", url: "https://www.youtube.com/watch?v=EkU0H9PDALY" },
     ],
   },
   {
     code: "MATH 302",
     name: "Advanced Calculus 2",
     color: "blue",
-    schedule: [{ day: "Mon", start: "10:30 AM", end: "1:30 PM", room: "" }],
+    schedule: [
+      { day: "Mon", start: "10:30 AM", end: "1:30 PM", room: "" },
+    ],
     links: [],
     materials: [
-      {
-        label: "Week 1 Beamer (Google Classroom)",
-        url: "https://classroom.google.com/c/ODc1MjQzMjUwOTc1/m/ODc1NTcwOTc5MTA2/details",
-      },
+      { label: "Week 1 Beamer (Google Classroom)", url: "https://classroom.google.com/c/ODc1MjQzMjUwOTc1/m/ODc1NTcwOTc5MTA2/details" },
     ],
     recordings: [
-      {
-        label: "Recording (Exam 1)",
-        url: "https://www.youtube.com/watch?v=Q9H0hbxOWHs",
-      },
-      {
-        label: "Orientation Recording",
-        url: "http://youtube.com/watch?v=wkF0ocbC4HI",
-      },
-      {
-        label: "Week 1 Backup Recording 1",
-        url: "https://www.youtube.com/watch?v=-BQvDx3aYQQ",
-      },
-      {
-        label: "Week 1 Backup Recording 2",
-        url: "https://www.youtube.com/watch?v=PebFLJ_u7TY&t=10s",
-      },
+      { label: "Recording (Exam 1)", url: "https://www.youtube.com/watch?v=Q9H0hbxOWHs" },
+      { label: "Orientation Recording", url: "http://youtube.com/watch?v=wkF0ocbC4HI" },
+      { label: "Week 1 Backup Recording 1", url: "https://www.youtube.com/watch?v=-BQvDx3aYQQ" },
+      { label: "Week 1 Backup Recording 2", url: "https://www.youtube.com/watch?v=PebFLJ_u7TY&t=10s" },
     ],
   },
   {
@@ -81,59 +56,31 @@ const SUBJECTS = [
     ],
     links: [],
     materials: [
-      {
-        label: "Syllabus & Books (Drive folder)",
-        url: "https://drive.google.com/drive/folders/1p_fiEL7iiuHAldoPGs6brUbQLpm4ysav",
-      },
+      { label: "Syllabus & Books (Drive folder)", url: "https://drive.google.com/drive/folders/1p_fiEL7iiuHAldoPGs6brUbQLpm4ysav" },
     ],
     recordings: [
-      {
-        label: "Week 1 Recording – Fundamental Theorem of Graph Theory",
-        url: "https://www.youtube.com/watch?v=wuts5_OGlqI&t=7s",
-      },
-      {
-        label: "Week 1 Recording 2",
-        url: "https://www.youtube.com/watch?v=jZOt1tjNpD8",
-      },
-      {
-        label: "Week 2.1 Recording – Join of Two Graphs",
-        url: "https://www.youtube.com/watch?v=9OOsH6e2l8U&t=1s",
-      },
-      {
-        label: "Week 2.1 Recording 2",
-        url: "https://www.youtube.com/watch?v=DzYI3xNUI-8",
-      },
-      {
-        label: "Week 2.2 Recording – Corona of Graphs",
-        url: "https://www.youtube.com/watch?v=k2xpsaQuQnE",
-      },
+      { label: "Week 1 Recording – Fundamental Theorem of Graph Theory", url: "https://www.youtube.com/watch?v=wuts5_OGlqI&t=7s" },
+      { label: "Week 1 Recording 2", url: "https://www.youtube.com/watch?v=jZOt1tjNpD8" },
+      { label: "Week 2.1 Recording – Join of Two Graphs", url: "https://www.youtube.com/watch?v=9OOsH6e2l8U&t=1s" },
+      { label: "Week 2.1 Recording 2", url: "https://www.youtube.com/watch?v=DzYI3xNUI-8" },
+      { label: "Week 2.2 Recording – Corona of Graphs", url: "https://www.youtube.com/watch?v=k2xpsaQuQnE" },
     ],
   },
   {
     code: "MATH 208",
     name: "Elementary Differential Equation",
     color: "blue",
-    schedule: [{ day: "Sat", start: "10:30 AM", end: "1:30 PM", room: "" }],
+    schedule: [
+      { day: "Sat", start: "10:30 AM", end: "1:30 PM", room: "" },
+    ],
     links: [],
     materials: [
-      {
-        label: "CLASS ORIENTATION - DE (FIRST SEM 26-27).pdf",
-        url: "https://pupedu-my.sharepoint.com/:b:/g/personal/rrbernardino_pup_edu_ph/IQD1Qjcl1SvlRbJ0aA-6vNt7Ae2lIyXBWG4DJveKD3A7H-g?e=vt1wAH",
-      },
-      {
-        label: "Week 2 – Vids & Beamer (OneDrive folder)",
-        url: "https://pupedu-my.sharepoint.com/personal/rrbernardino_pup_edu_ph/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Frrbernardino_pup_edu_ph%2FDocuments%2FDIFFERENTIAL%20EQUATIONS%20(2026)&ga=1",
-      },
+      { label: "CLASS ORIENTATION - DE (FIRST SEM 26-27).pdf", url: "https://pupedu-my.sharepoint.com/:b:/g/personal/rrbernardino_pup_edu_ph/IQD1Qjcl1SvlRbJ0aA-6vNt7Ae2lIyXBWG4DJveKD3A7H-g?e=vt1wAH" },
+      { label: "Week 2 – Vids & Beamer (OneDrive folder)", url: "https://pupedu-my.sharepoint.com/personal/rrbernardino_pup_edu_ph/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Frrbernardino_pup_edu_ph%2FDocuments%2FDIFFERENTIAL%20EQUATIONS%20(2026)&ga=1" },
     ],
     recordings: [
-      {
-        label: "Recording (Exam 1)",
-        url: "https://www.youtube.com/watch?v=xRxqHdkFBY0",
-      },
-      {
-        label: "Week 1 Backup Recording (SharePoint Stream)",
-        url: "https://pupedu.sharepoint.com/sites/A26-27BSMATH3-1EDE/_layouts/15/stream.aspx?id=%2Fsites%2FA26%2D27BSMATH3%2D1EDE%2FShared%20Documents%2FGeneral%2FBSMATH%203%2D1%20%2819AUG26%29%2Emp4",
-      },
+      { label: "Recording (Exam 1)", url: "https://www.youtube.com/watch?v=xRxqHdkFBY0" },
+      { label: "Week 1 Backup Recording (SharePoint Stream)", url: "https://pupedu.sharepoint.com/sites/A26-27BSMATH3-1EDE/_layouts/15/stream.aspx?id=%2Fsites%2FA26%2D27BSMATH3%2D1EDE%2FShared%20Documents%2FGeneral%2FBSMATH%203%2D1%20%2819AUG26%29%2Emp4" },
     ],
   },
   {
@@ -152,7 +99,9 @@ const SUBJECTS = [
     code: "ECON 011",
     name: "Principles of Economics",
     color: "blue",
-    schedule: [{ day: "Fri", start: "4:30 PM", end: "7:30 PM", room: "" }],
+    schedule: [
+      { day: "Fri", start: "4:30 PM", end: "7:30 PM", room: "" },
+    ],
     links: [],
     materials: [],
     recordings: [],
@@ -161,7 +110,9 @@ const SUBJECTS = [
     code: "GEED 037",
     name: "Life and Works of Rizal",
     color: "yellow",
-    schedule: [{ day: "Fri", start: "1:30 PM", end: "4:30 PM", room: "" }],
+    schedule: [
+      { day: "Fri", start: "1:30 PM", end: "4:30 PM", room: "" },
+    ],
     links: [],
     materials: [],
     recordings: [],
@@ -195,10 +146,7 @@ const ANNOUNCEMENTS = [
 const GENERAL_ITEMS = [
   { heading: "Enrollment" },
   { text: "PUP Student Portal", url: "" },
-  {
-    text: "Requirements for enrollment",
-    bullets: ["Bring your COR", "Pay assessment fee"],
-  },
+  { text: "Requirements for enrollment", bullets: ["Bring your COR", "Pay assessment fee"] },
 ];
 
 // Order used for the weekly schedule strip on the homepage.
