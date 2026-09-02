@@ -22,8 +22,10 @@
       <input class="music-seek" type="range" min="0" max="0" value="0" step="0.1" data-music-seek aria-label="Song progress" />
       <button class="volume-button" type="button" data-music-volume aria-label="Volume" aria-expanded="false" title="Volume"><span class="volume-icon" aria-hidden="true">&#9835;</span></button>
       <div class="volume-panel">
-        <input class="volume-slider" type="range" min="0" max="1" value="0.1" step="0.05" data-music-volume-slider aria-label="Volume" />
+        <input class="volume-slider" type="range" min="0" max="1" value="0.05" step="0.01" data-music-volume-slider aria-label="Volume" />
       </div>
+      <button class="music-menu-button" type="button" data-music-menu aria-label="Choose song" aria-expanded="false" title="Choose song"><span class="menu-icon" aria-hidden="true"></span></button>
+      <div class="music-menu" aria-label="Songs"></div>
     </div>
     <button class="animation-toggle" type="button" aria-pressed="false">Pause petals</button>
   </div>

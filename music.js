@@ -9,6 +9,8 @@ const seek = player.querySelector("[data-music-seek]");
 const volumeButton = player.querySelector("[data-music-volume]");
 const volumePanel = player.querySelector(".volume-panel");
 const volumeSlider = player.querySelector("[data-music-volume-slider]");
+const menuButton = player.querySelector("[data-music-menu]");
+const musicMenu = player.querySelector(".music-menu");
 const trackLabel = player.querySelector(".music-track");
 const tracks = typeof MUSIC_TRACKS === "undefined" ? [] : MUSIC_TRACKS;
 const MUSIC_STATE_KEY = "music-player-state";
@@ -18,11 +20,22 @@ try {
 } catch (e) {
   savedState = {};
 }
-let trackIndex = Number.isInteger(savedState.trackIndex) ? savedState.trackIndex : 0;
+let trackIndex = Number.isInteger(savedState.trackIndex) ? savedState.trackIndex : -1;
 let resumeAfterLoad = savedState.playing === true;
 
 if (tracks.length > 0) {
-  trackIndex = Math.max(0, Math.min(trackIndex, tracks.length - 1));
+  if (trackIndex < 0 || trackIndex >= tracks.length) {
+    trackIndex = Math.floor(Math.random() * tracks.length);
+  }
+}
+
+function randomTrackIndex() {
+  if (tracks.length < 2) return trackIndex;
+  let nextIndex = trackIndex;
+  while (nextIndex === trackIndex) {
+    nextIndex = Math.floor(Math.random() * tracks.length);
+  }
+  return nextIndex;
 }
 
 function saveMusicState() {
@@ -52,6 +65,23 @@ function updatePlayer() {
   }
   trackLabel.textContent = tracks[trackIndex].title;
   audio.src = tracks[trackIndex].url;
+  updateMusicMenu();
+}
+
+function updateMusicMenu() {
+  musicMenu.innerHTML = "";
+  tracks.forEach((track, index) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "music-menu-item" + (index === trackIndex ? " active" : "");
+    item.textContent = track.title;
+    item.addEventListener("click", () => {
+      loadTrack(index, true);
+      musicMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    });
+    musicMenu.appendChild(item);
+  });
 }
 
 function loadTrack(index, shouldPlay) {
@@ -69,8 +99,8 @@ playButton.addEventListener("click", () => {
   else audio.pause();
 });
 
-previousButton.addEventListener("click", () => loadTrack(trackIndex - 1, true));
-nextButton.addEventListener("click", () => loadTrack(trackIndex + 1, true));
+previousButton.addEventListener("click", () => loadTrack(randomTrackIndex(), true));
+nextButton.addEventListener("click", () => loadTrack(randomTrackIndex(), true));
 audio.addEventListener("play", () => {
   playButton.textContent = "⏸";
   saveMusicState();
@@ -79,7 +109,7 @@ audio.addEventListener("pause", () => {
   playButton.textContent = "▶";
   saveMusicState();
 });
-audio.addEventListener("ended", () => loadTrack(trackIndex + 1, true));
+audio.addEventListener("ended", () => loadTrack(randomTrackIndex(), true));
 audio.addEventListener("loadedmetadata", () => {
   seek.max = audio.duration || 0;
   if (Number.isFinite(savedState.currentTime)) {
@@ -102,8 +132,13 @@ volumeButton.addEventListener("click", () => {
   volumeButton.setAttribute("aria-expanded", String(open));
 });
 
+menuButton.addEventListener("click", () => {
+  const open = musicMenu.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(open));
+});
+
 volumeSlider.addEventListener("input", () => { audio.volume = volumeSlider.value; });
-volumeSlider.value = Number.isFinite(savedState.volume) ? savedState.volume : "0.1";
+volumeSlider.value = Number.isFinite(savedState.volume) ? savedState.volume : "0.05";
 audio.volume = Number(volumeSlider.value);
 window.addEventListener("beforeunload", saveMusicState);
 updatePlayer();

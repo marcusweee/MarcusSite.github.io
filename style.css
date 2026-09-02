@@ -204,6 +204,57 @@ a {
   background: rgba(211, 154, 191, 0.16);
 }
 
+.music-menu-button {
+  border: 0;
+  border-radius: 2px;
+  padding: 4px 6px;
+  color: var(--chalk-dim);
+  background: transparent;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.music-menu-button:hover,
+.music-menu-button[aria-expanded="true"] {
+  color: var(--chalk);
+  background: rgba(211, 154, 191, 0.16);
+}
+
+.music-menu-button:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 1px;
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 15px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.menu-icon {
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before {
+  top: -5px;
+}
+
+.menu-icon::after {
+  top: 5px;
+}
+
 .music-control:disabled {
   cursor: not-allowed;
   opacity: 0.4;
@@ -278,6 +329,69 @@ a {
 
 .volume-panel.open {
   display: block;
+}
+
+.music-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 5;
+  display: none;
+  width: 230px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 6px;
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  scrollbar-color: var(--yellow) var(--board-light);
+  scrollbar-width: thin;
+}
+
+.music-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.music-menu::-webkit-scrollbar-track {
+  margin: 5px 0;
+  border-radius: 8px;
+  background: var(--board-light);
+}
+
+.music-menu::-webkit-scrollbar-thumb {
+  border: 2px solid var(--board-light);
+  border-radius: 8px;
+  background: var(--yellow);
+}
+
+.music-menu::-webkit-scrollbar-thumb:hover {
+  background: var(--chalk);
+}
+
+.music-menu.open {
+  display: block;
+}
+
+.music-menu-item {
+  display: block;
+  width: 100%;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 2px;
+  color: var(--ink-dim);
+  background: transparent;
+  font: inherit;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.music-menu-item:hover,
+.music-menu-item.active {
+  color: var(--ink);
+  background: rgba(211, 154, 191, 0.16);
 }
 
 .volume-slider {
