@@ -47,30 +47,36 @@
     heading.textContent = subject.code + " — " + subject.name;
     list.appendChild(heading);
 
+    const wrap = document.createElement("div");
+    wrap.className = "recording-list";
+
     subject.recordings.forEach((rec) => {
-      const row = document.createElement("div");
-      row.className = "notebook-row" + (colorIndex % 2 === 1 ? " blue" : "");
-      colorIndex++;
-
-      const body = document.createElement("div");
-      body.className = "body";
-
       const a = document.createElement("a");
-      a.className = "notebook-link";
+      a.className = "recording-item" + (colorIndex % 2 === 1 ? " blue" : "");
+      colorIndex++;
       a.href = rec.url;
       a.target = "_blank";
       a.rel = "noopener";
-      a.textContent = rec.label;
-      body.appendChild(a);
+
+      const badge = document.createElement("span");
+      badge.className = "play-badge";
+      badge.textContent = "▶";
+      a.appendChild(badge);
+
+      const label = document.createElement("span");
+      label.className = "label";
+      label.textContent = rec.label;
+      a.appendChild(label);
 
       const arrow = document.createElement("span");
       arrow.className = "arrow";
       arrow.textContent = "↗";
-      body.appendChild(arrow);
+      a.appendChild(arrow);
 
-      row.appendChild(body);
-      list.appendChild(row);
+      wrap.appendChild(a);
     });
+
+    list.appendChild(wrap);
   });
 
   if (!any) {

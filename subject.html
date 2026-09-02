@@ -113,6 +113,42 @@
     return ul;
   }
 
+  function buildRecordingList(items, emptyHint) {
+    if (!items || items.length === 0) {
+      const div = document.createElement("div");
+      div.className = "empty-slot";
+      div.innerHTML = emptyHint;
+      return div;
+    }
+    const wrap = document.createElement("div");
+    wrap.className = "recording-list";
+    items.forEach((item, i) => {
+      const a = document.createElement("a");
+      a.className = "recording-item" + (i % 2 === 1 ? " blue" : "");
+      a.href = item.url || "#";
+      a.target = "_blank";
+      a.rel = "noopener";
+
+      const badge = document.createElement("span");
+      badge.className = "play-badge";
+      badge.textContent = "▶";
+      a.appendChild(badge);
+
+      const label = document.createElement("span");
+      label.className = "label";
+      label.textContent = item.label;
+      a.appendChild(label);
+
+      const arrow = document.createElement("span");
+      arrow.className = "arrow";
+      arrow.textContent = "↗";
+      a.appendChild(arrow);
+
+      wrap.appendChild(a);
+    });
+    return wrap;
+  }
+
   if (!subject) {
     app.innerHTML =
       '<div class="page-head"><h1>Subject not found</h1>' +
@@ -158,7 +194,7 @@
     recordingsSection.className = "detail-section";
     recordingsSection.innerHTML = "<h3>Recordings</h3>";
     recordingsSection.appendChild(
-      buildList(subject.recordings, 'No recordings yet — add to this subject\'s <code>recordings</code> array in config.js.')
+      buildRecordingList(subject.recordings, 'No recordings yet — add to this subject\'s <code>recordings</code> array in config.js.')
     );
 
     dgrid.appendChild(linksSection);
