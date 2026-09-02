@@ -81,6 +81,8 @@ const SUBJECTS = [
     recordings: [
       { label: "Recording (Exam 1)", url: "https://www.youtube.com/watch?v=xRxqHdkFBY0" },
       { label: "Week 1 Backup Recording (SharePoint Stream)", url: "https://pupedu.sharepoint.com/sites/A26-27BSMATH3-1EDE/_layouts/15/stream.aspx?id=%2Fsites%2FA26%2D27BSMATH3%2D1EDE%2FShared%20Documents%2FGeneral%2FBSMATH%203%2D1%20%2819AUG26%29%2Emp4" },
+      { label: "Week 3 Recording", url: "https://www.youtube.com/watch?v=W8EzUIUSpJY" },
+      { label: "Week 3 Backup Recording", url: "https://youtu.be/9AGEQWoK8f8" },
     ],
   },
   {
