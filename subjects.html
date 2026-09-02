@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semester — Subjects</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="mark">semester<span>.</span></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="subjects.html" class="active">Subjects</a>
+    <a href="general.html">General</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>Subjects</h1>
+    <p>Tap a subject to open its class links and materials.</p>
+  </div>
+
+  <div class="card-grid" id="card-grid"></div>
+</div>
+
+<script src="config.js"></script>
+<script>
+  const grid = document.getElementById("card-grid");
+
+  SUBJECTS.forEach((subject) => {
+    const card = document.createElement("a");
+    card.className = "subject-card" + (subject.color === "blue" ? " blue" : "");
+    card.href = "subject.html?c=" + encodeURIComponent(codeToSlug(subject.code));
+
+    const code = document.createElement("div");
+    code.className = "code";
+    code.textContent = subject.code;
+
+    const name = document.createElement("h2");
+    name.textContent = subject.name;
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    meta.textContent = subject.links.length + " link" + (subject.links.length === 1 ? "" : "s") +
+      " · " + subject.materials.length + " material" + (subject.materials.length === 1 ? "" : "s");
+
+    card.appendChild(code);
+    card.appendChild(name);
+    card.appendChild(meta);
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

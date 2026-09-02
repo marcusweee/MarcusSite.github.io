@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semester — Home</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="mark">semester<span>.</span></a>
+  <div class="links">
+    <a href="index.html" class="active">Home</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="general.html">General</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>This week</h1>
+    <p>Your schedule, pulled straight from <code>config.js</code>.</p>
+  </div>
+
+  <div id="setup-note" class="setup-note" style="display:none;">
+    No class times set yet. Open <code>config.js</code> and add entries to a subject's
+    <code>schedule</code> array, e.g. <code>{ day: "Mon", start: "9:00 AM", end: "10:30 AM" }</code>,
+    and this page will fill in automatically.
+  </div>
+
+  <div class="week" id="week"></div>
+
+  <p class="section-label">Quick links</p>
+  <ul class="item-list" style="max-width: 320px;">
+    <li><a href="subjects.html">Browse all subjects →</a></li>
+  </ul>
+</div>
+
+<script src="config.js"></script>
+<script>
+  const weekEl = document.getElementById("week");
+  let anyScheduled = false;
+
+  DAYS.forEach((day) => {
+    const col = document.createElement("div");
+    col.className = "day-col";
+
+    const heading = document.createElement("h3");
+    heading.textContent = day;
+    col.appendChild(heading);
+
+    // gather every subject meeting on this day, sorted by start time as typed
+    const todays = [];
+    SUBJECTS.forEach((subject) => {
+      subject.schedule.forEach((slot) => {
+        if (slot.day === day) todays.push({ subject, slot });
+      });
+    });
+
+    if (todays.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "day-empty";
+      empty.textContent = "No classes set";
+      col.appendChild(empty);
+    } else {
+      anyScheduled = true;
+      todays.forEach(({ subject, slot }) => {
+        const block = document.createElement("a");
+        block.className = "class-block" + (subject.color === "blue" ? " blue" : "");
+        block.href = "subject.html?c=" + encodeURIComponent(codeToSlug(subject.code));
+
+        const code = document.createElement("span");
+        code.className = "code";
+        code.textContent = subject.code;
+
+        const time = document.createElement("span");
+        time.className = "time";
+        time.textContent = slot.start + (slot.end ? " – " + slot.end : "") + (slot.room ? " · " + slot.room : "");
+
+        block.appendChild(code);
+        block.appendChild(time);
+        col.appendChild(block);
+      });
+    }
+
+    weekEl.appendChild(col);
+  });
+
+  if (!anyScheduled) {
+    document.getElementById("setup-note").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
