@@ -144,9 +144,12 @@ const ANNOUNCEMENTS = [
 //       "text" and just use "bullets" for a standalone list with no intro.
 //
 const GENERAL_ITEMS = [
-  { heading: "Enrollment" },
-  { text: "PUP Student Portal", url: "" },
-  { text: "Requirements for enrollment", bullets: ["Bring your COR", "Pay assessment fee"] },
+  { heading: "Links" },
+  { text: "PUPSIS Site", url: "" },
+  {
+    text: "Officers Site",
+    url: "https://sites.google.com/view/bsm3-1/home?fbclid=IwcGRvZgVleHRuA2FlbQIxMABicmlkETFONnJtSlpyVHRyR1J2SVI2c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpMFZM_q801u3vKVaBWsOIY2w8NC6zVFyDF-Pl2-8hFMgtpOXjjuV1PcXzZO_aem_OXxeET4YrRteeuaRLTC6jQ",
+  },
 ];
 
 // Order used for the weekly schedule strip on the homepage.
