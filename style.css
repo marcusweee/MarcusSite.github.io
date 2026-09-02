@@ -1183,23 +1183,101 @@ button:focus-visible {
 }
 
 @media (max-width: 760px) {
-  .site-nav .links {
+  .site-nav {
+    align-items: center;
+    padding: 14px 16px 12px;
     gap: 12px;
   }
+
+  .site-nav .mark {
+    font-size: 18px;
+  }
+
+  .site-nav .links {
+    width: 100%;
+    align-items: center;
+    gap: 10px 16px;
+    flex-wrap: wrap;
+  }
+
+  .site-nav .links {
+    font-size: 14px;
+  }
+
+  .site-nav .links a {
+    padding-bottom: 2px;
+  }
+
+  .music-player {
+    order: 5;
+    flex: 1 1 100%;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+  }
+
   .music-track {
     max-width: 160px;
   }
+
   .music-seek {
-    width: 70px;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 55px;
   }
+
+  .music-menu,
+  .volume-panel {
+    right: 0;
+    max-width: calc(100vw - 32px);
+  }
+
+  .effects-control {
+    order: 6;
+  }
+
+  .wrap {
+    padding: 0 16px 56px;
+  }
+
+  .page-head {
+    margin-top: 4px;
+    margin-bottom: 26px;
+  }
+
+  .page-head h1 {
+    font-size: 30px;
+  }
+
+  .page-head p {
+    font-size: 16px;
+  }
+
   .week {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 34px;
   }
+
+  .day-col {
+    min-height: 0;
+  }
+
   .detail-grid {
     grid-template-columns: 1fr;
   }
+
   .paper {
-    padding: 26px 22px 6px;
+    padding: 24px 18px 6px;
+  }
+
+  .paper h1 {
+    font-size: 24px;
+    overflow-wrap: anywhere;
+  }
+
+  .notebook-row .body {
+    font-size: 16px;
   }
 }
 
