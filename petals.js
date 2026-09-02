@@ -28,12 +28,65 @@ document.body.appendChild(clickRippleField);
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const catSheets = [1, 2, 3].map((catNumber) => encodeURI(
+  "Catimations/cat " + catNumber + " (64х64).png"
+));
+const roamingCatCount = 1 + Math.floor(Math.random() * 3);
+
+for (let i = 0; i < roamingCatCount; i++) {
+  const roamingCat = document.createElement("div");
+  roamingCat.className = "roaming-cat";
+  roamingCat.setAttribute("aria-hidden", "true");
+  roamingCat.style.setProperty("--cat-sheet", "url('" + catSheets[Math.floor(Math.random() * catSheets.length)] + "')");
+  roamingCat.style.setProperty("--cat-lane", (18 + Math.random() * 100).toFixed(0) + "px");
+  roamingCat.style.setProperty("--cat-speed", (32 + Math.random() * 28).toFixed(2) + "s");
+  roamingCat.style.setProperty("--cat-delay", (-Math.random() * 42).toFixed(2) + "s");
+
+  const sprite = document.createElement("span");
+  sprite.className = "cat-sprite";
+  roamingCat.appendChild(sprite);
+  document.body.appendChild(roamingCat);
+
+  function scheduleCatEvent() {
+    const delay = 7000 + Math.random() * 12000;
+    window.setTimeout(() => {
+      const eventType = Math.random() < 0.58 ? "sit" : "lay";
+      const eventSettings = eventType === "sit"
+        ? { row: 0, frames: 4, duration: 1.8, pause: 1800 }
+        : { row: 6, frames: 14, duration: 2.6, pause: 2600 };
+
+      roamingCat.classList.add("cat-event");
+      sprite.classList.add("cat-event-sprite");
+      sprite.style.setProperty("--cat-y", -(eventSettings.row * 64) + "px");
+      sprite.style.setProperty("--cat-frames", eventSettings.frames);
+      sprite.style.setProperty("--cat-steps", eventSettings.frames - 1);
+      sprite.style.setProperty("--cat-end-x", -((eventSettings.frames - 1) * 64) + "px");
+      sprite.style.setProperty("--event-time", eventSettings.duration + "s");
+
+      window.setTimeout(() => {
+        roamingCat.classList.remove("cat-event");
+        sprite.classList.remove("cat-event-sprite");
+        sprite.style.setProperty("--cat-y", "-320px");
+        sprite.style.setProperty("--cat-frames", "6");
+        sprite.style.setProperty("--cat-steps", "5");
+        sprite.style.setProperty("--cat-end-x", "-320px");
+        scheduleCatEvent();
+      }, (eventSettings.duration + eventSettings.pause / 1000) * 1000);
+    }, delay);
+  }
+
+  if (!reducedMotion.matches) {
+    scheduleCatEvent();
+  }
+}
+
 const effectsButton = document.querySelector(".effects-button");
 const effectsMenu = document.querySelector(".effects-menu");
 const fallingPetalsOption = document.querySelector("[data-effect='falling-petals']");
 const petalTrailOption = document.querySelector("[data-effect='petal-trail']");
 const gridParallaxOption = document.querySelector("[data-effect='grid-parallax']");
 const clickRippleOption = document.querySelector("[data-effect='click-ripple']");
+const roamingCatsOption = document.querySelector("[data-effect='roaming-cats']");
 let effectsState = {};
 try {
   effectsState = JSON.parse(localStorage.getItem("effects-state") || "{}");
@@ -45,6 +98,7 @@ const fallingPetalsEnabled = effectsState.fallingPetals ?? localStorage.getItem(
 let petalTrailEnabled = effectsState.petalTrail === true;
 let gridParallaxEnabled = effectsState.gridParallax !== false;
 let clickRippleEnabled = effectsState.clickRipple === true;
+let roamingCatsEnabled = effectsState.roamingCats !== false;
 
 function saveEffectsState() {
   try {
@@ -53,6 +107,7 @@ function saveEffectsState() {
       petalTrail: petalTrailOption.checked,
       gridParallax: gridParallaxOption.checked,
       clickRipple: clickRippleOption.checked,
+      roamingCats: roamingCatsOption.checked,
     }));
   } catch (e) {
     // Keep effect controls working if storage is unavailable.
@@ -64,6 +119,8 @@ function updateEffects() {
   petalTrailEnabled = petalTrailOption.checked;
   gridParallaxEnabled = gridParallaxOption.checked;
   clickRippleEnabled = clickRippleOption.checked;
+  roamingCatsEnabled = roamingCatsOption.checked;
+  document.body.classList.toggle("roaming-cats-off", !roamingCatsEnabled);
   if (!gridParallaxEnabled) {
     document.body.style.setProperty("--grid-x", "0px");
     document.body.style.setProperty("--grid-y", "0px");
@@ -74,6 +131,7 @@ fallingPetalsOption.checked = fallingPetalsEnabled;
 petalTrailOption.checked = petalTrailEnabled;
 gridParallaxOption.checked = gridParallaxEnabled;
 clickRippleOption.checked = clickRippleEnabled;
+roamingCatsOption.checked = roamingCatsEnabled;
 updateEffects();
 
 effectsButton.addEventListener("click", () => {
@@ -81,7 +139,7 @@ effectsButton.addEventListener("click", () => {
   effectsButton.setAttribute("aria-expanded", String(open));
 });
 
-[fallingPetalsOption, petalTrailOption, gridParallaxOption, clickRippleOption].forEach((option) => {
+[fallingPetalsOption, petalTrailOption, gridParallaxOption, clickRippleOption, roamingCatsOption].forEach((option) => {
   option.addEventListener("change", () => {
     updateEffects();
     saveEffectsState();

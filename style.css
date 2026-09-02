@@ -78,6 +78,89 @@ body {
   background: rgba(160, 103, 155, 0.42);
 }
 
+.roaming-cat {
+  position: fixed;
+  left: 0;
+  bottom: var(--cat-lane, 18px);
+  z-index: 4;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(12, 7, 15, 0.35));
+  animation: cat-roam var(--cat-speed, 42s) linear var(--cat-delay, 0s) infinite,
+    cat-bob 0.8s ease-in-out infinite alternate;
+}
+
+.roaming-cats-off .roaming-cat {
+  display: none;
+}
+
+.cat-sprite {
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-image: var(--cat-sheet);
+  background-position: 0 var(--cat-y, -320px);
+  background-repeat: no-repeat;
+  background-size: 896px 4608px;
+  image-rendering: pixelated;
+  animation: cat-walk 0.75s steps(5) infinite;
+}
+
+.roaming-cat.cat-event {
+  animation-play-state: paused;
+}
+
+.cat-sprite.cat-event-sprite {
+  animation: cat-event var(--event-time, 1.8s) steps(var(--cat-steps, 3)) 1 forwards;
+}
+
+@keyframes cat-walk {
+  from {
+    background-position: 0 -320px;
+  }
+  to {
+    background-position: -320px -320px;
+  }
+}
+
+@keyframes cat-event {
+  from {
+    background-position: 0 var(--cat-y);
+  }
+  to {
+    background-position: var(--cat-end-x) var(--cat-y);
+  }
+}
+
+@keyframes cat-roam {
+  0%, 8% {
+    left: 0;
+    transform: scaleX(1);
+  }
+  45%, 53% {
+    left: calc(100% - 64px);
+    transform: scaleX(1);
+  }
+  53.1%, 61% {
+    left: calc(100% - 64px);
+    transform: scaleX(-1);
+  }
+  100% {
+    left: 0;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes cat-bob {
+  from {
+    margin-bottom: 0;
+  }
+  to {
+    margin-bottom: 4px;
+  }
+}
+
 @keyframes petal-fall {
   0% {
     transform: translate3d(0, -8vh, 0) rotate(var(--start-rotation));
@@ -1284,6 +1367,12 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .petal-field {
     display: none;
+  }
+  .roaming-cat {
+    animation: none;
+  }
+  .cat-sprite {
+    animation: none;
   }
   .subject-card,
   .subject-card:hover {
