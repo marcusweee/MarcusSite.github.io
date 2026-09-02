@@ -9,7 +9,7 @@
 <body>
 
 <nav class="site-nav">
-  <a href="index.html" class="mark">BSM3-1<span>.</span></a>
+  <a href="index.html" class="mark">semester<span>.</span></a>
   <div class="links">
     <a href="index.html" class="active">Home</a>
     <a href="subjects.html">Subjects</a>
@@ -31,9 +31,17 @@
 
   <div class="week" id="week"></div>
 
+  <p class="section-label">Announcements &amp; deadlines</p>
+  <div id="announce-empty" class="setup-note" style="display:none;">
+    Nothing posted yet. Add entries to <code>ANNOUNCEMENTS</code> in config.js —
+    each can have a <code>due</code> date and an optional <code>url</code>.
+  </div>
+  <div class="announce-grid" id="announce-grid"></div>
+
   <p class="section-label">Quick links</p>
   <ul class="item-list" style="max-width: 320px;">
     <li><a href="subjects.html">Browse all subjects →</a></li>
+    <li><a href="general.html">General links &amp; notes →</a></li>
   </ul>
 </div>
 
@@ -89,6 +97,45 @@
 
   if (!anyScheduled) {
     document.getElementById("setup-note").style.display = "block";
+  }
+
+  const announceGrid = document.getElementById("announce-grid");
+  if (!ANNOUNCEMENTS || ANNOUNCEMENTS.length === 0) {
+    document.getElementById("announce-empty").style.display = "block";
+  } else {
+    ANNOUNCEMENTS.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "announce-card" + (item.color === "blue" ? " blue" : "");
+
+      const top = document.createElement("div");
+      top.className = "top";
+
+      const text = document.createElement("p");
+      text.className = "text";
+      text.textContent = item.text;
+      top.appendChild(text);
+
+      if (item.due) {
+        const due = document.createElement("span");
+        due.className = "due";
+        due.textContent = item.due;
+        top.appendChild(due);
+      }
+
+      card.appendChild(top);
+
+      if (item.url) {
+        const link = document.createElement("a");
+        link.className = "announce-link";
+        link.href = item.url;
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.textContent = "Open ↗";
+        card.appendChild(link);
+      }
+
+      announceGrid.appendChild(card);
+    });
   }
 </script>
 

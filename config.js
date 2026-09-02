@@ -27,7 +27,9 @@ const SUBJECTS = [
     code: "MATH 302",
     name: "Advanced Calculus 2",
     color: "blue",
-    schedule: [{ day: "Mon", start: "10:30 AM", end: "1:30 PM", room: "" }],
+    schedule: [
+      { day: "Mon", start: "10:30 AM", end: "1:30 PM", room: "" },
+    ],
     links: [],
     materials: [],
   },
@@ -46,17 +48,12 @@ const SUBJECTS = [
     code: "MATH 208",
     name: "Elementary Differential Equation",
     color: "blue",
-    schedule: [{ day: "Sat", start: "10:30 AM", end: "1:30 PM", room: "" }],
+    schedule: [
+      { day: "Sat", start: "10:30 AM", end: "1:30 PM", room: "" },
+    ],
     links: [],
     materials: [
-      {
-        label: "CLASS ORIENTATION - DE (FIRST SEM 26-27).pdf",
-        url: "https://pupedu-my.sharepoint.com/:b:/g/personal/rrbernardino_pup_edu_ph/IQD1Qjcl1SvlRbJ0aA-6vNt7Ae2lIyXBWG4DJveKD3A7H-g?e=vt1wAH",
-      },
-      {
-        label: "ASYNC: Solution of Differential Equations",
-        url: "https://pupedu-my.sharepoint.com/:v:/r/personal/rrbernardino_pup_edu_ph/Documents/DIFFERENTIAL%20EQUATIONS%20(2026)/SOLUTION%20OF%20A%20DIFFERENTIAL%20EQUATION.mp4?d=w4ea94d37264f40ddac33487b524bd4d6&csf=1&web=1&e=t5jyjX",
-      },
+      { label: "CLASS ORIENTATION - DE (FIRST SEM 26-27).pdf", url: "https://pupedu-my.sharepoint.com/:b:/g/personal/rrbernardino_pup_edu_ph/IQD1Qjcl1SvlRbJ0aA-6vNt7Ae2lIyXBWG4DJveKD3A7H-g?e=vt1wAH" },
     ],
   },
   {
@@ -74,7 +71,9 @@ const SUBJECTS = [
     code: "ECON 011",
     name: "Principles of Economics",
     color: "blue",
-    schedule: [{ day: "Fri", start: "4:30 PM", end: "7:30 PM", room: "" }],
+    schedule: [
+      { day: "Fri", start: "4:30 PM", end: "7:30 PM", room: "" },
+    ],
     links: [],
     materials: [],
   },
@@ -82,20 +81,27 @@ const SUBJECTS = [
     code: "GEED 037",
     name: "Life and Works of Rizal",
     color: "yellow",
-    schedule: [{ day: "Fri", start: "1:30 PM", end: "4:30 PM", room: "" }],
+    schedule: [
+      { day: "Fri", start: "1:30 PM", end: "4:30 PM", room: "" },
+    ],
     links: [],
     materials: [],
   },
 ];
 
-// Links and materials that aren't tied to one subject —
-// school portal, enrollment, org pages, general references, etc.
-const GENERAL_LINKS = [
-  // { label: "Student Portal", url: "" },
+// Notes and deadlines to keep in view on the homepage.
+// due is optional — plain reminders don't need one.
+// url is optional too — leave it "" for a plain announcement.
+const ANNOUNCEMENTS = [
+  // { text: "Midterm exams start", due: "Oct 6", url: "", color: "yellow" },
 ];
 
-const GENERAL_MATERIALS = [
-  // { label: "Academic Calendar", url: "" },
+// General text/links that aren't tied to one subject — portal, enrollment,
+// org pages, references. Each entry is just a line of text; give it a url
+// to make that line a clickable link, or leave url "" for plain text/notes.
+const GENERAL_ITEMS = [
+  // { text: "PUP Student Portal", url: "" },
+  // { text: "Bring your COR every enrollment day", url: "" },
 ];
 
 // Order used for the weekly schedule strip on the homepage.

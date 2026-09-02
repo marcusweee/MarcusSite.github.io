@@ -20,112 +20,60 @@
 <div class="wrap">
   <div class="page-head">
     <h1>General</h1>
-    <p>Links and materials that aren't tied to one subject — portal, enrollment, org pages, and the like.</p>
+    <p>Notes and links that aren't tied to one subject — portal, enrollment, org pages.</p>
   </div>
 
-  <div class="paper" style="padding-top: 26px;">
-    <div class="detail-grid">
-      <div class="detail-section">
-        <h3>Links</h3>
-        <div id="general-links"></div>
-      </div>
-      <div class="detail-section">
-        <h3>Materials</h3>
-        <div id="general-materials"></div>
-      </div>
-    </div>
+  <div id="notebook-empty" class="setup-note" style="display:none;">
+    Nothing here yet. Add lines to <code>GENERAL_ITEMS</code> in config.js — give an
+    entry a <code>url</code> to make it a link, or leave it blank for a plain note.
   </div>
+
+  <div class="notebook" id="notebook"></div>
 </div>
 
 <script src="config.js"></script>
 <script>
-  function looksLikePdf(item) {
-    const url = item.url || "";
-    const label = item.label || "";
-    return /\.pdf($|\?)/i.test(url) || /\.pdf$/i.test(label.trim());
-  }
+  const notebook = document.getElementById("notebook");
 
-  function canEmbed(url) {
-    try {
-      const host = new URL(url, window.location.href).hostname;
-      return !/(^|\.)sharepoint\.com$|(^|\.)onedrive\.live\.com$/i.test(host);
-    } catch (e) {
-      return false;
-    }
-  }
+  if (!GENERAL_ITEMS || GENERAL_ITEMS.length === 0) {
+    document.getElementById("notebook-empty").style.display = "block";
+  } else {
+    GENERAL_ITEMS.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "notebook-row";
 
-  function buildPdfItem(item) {
-    const li = document.createElement("li");
-    li.className = "pdf-item";
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      row.appendChild(dot);
 
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "pdf-toggle";
-    btn.setAttribute("aria-expanded", "false");
-    btn.innerHTML = "<span>" + item.label + "</span><span class=\"chevron\">▸</span>";
+      const body = document.createElement("div");
 
-    const frame = document.createElement("div");
-    frame.className = "pdf-frame";
-    frame.hidden = true;
-
-    let loaded = false;
-    btn.addEventListener("click", () => {
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!expanded));
-      frame.hidden = expanded;
-      if (!loaded && !expanded) {
-        const iframe = document.createElement("iframe");
-        iframe.src = item.url;
-        iframe.title = item.label;
-        const openNew = document.createElement("a");
-        openNew.className = "pdf-open-new";
-        openNew.href = item.url;
-        openNew.target = "_blank";
-        openNew.rel = "noopener";
-        openNew.textContent = "Open in new tab ↗";
-        frame.appendChild(iframe);
-        frame.appendChild(openNew);
-        loaded = true;
+      if (item.url) {
+        body.className = "body";
+        const a = document.createElement("a");
+        a.className = "notebook-link";
+        a.href = item.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = item.text;
+        body.appendChild(a);
+      } else {
+        body.className = "body plain";
+        body.textContent = item.text;
       }
-    });
 
-    li.appendChild(btn);
-    li.appendChild(frame);
-    return li;
-  }
+      row.appendChild(body);
 
-  function buildList(items, emptyHint) {
-    if (!items || items.length === 0) {
-      const div = document.createElement("div");
-      div.className = "empty-slot";
-      div.innerHTML = emptyHint;
-      return div;
-    }
-    const ul = document.createElement("ul");
-    ul.className = "item-list";
-    items.forEach((item) => {
-      if (looksLikePdf(item) && canEmbed(item.url)) {
-        ul.appendChild(buildPdfItem(item));
-        return;
+      if (item.url) {
+        const arrow = document.createElement("span");
+        arrow.className = "arrow";
+        arrow.textContent = "↗";
+        row.appendChild(arrow);
       }
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-      a.href = item.url || "#";
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = item.label;
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    return ul;
-  }
 
-  document.getElementById("general-links").appendChild(
-    buildList(GENERAL_LINKS, 'No links yet — add to <code>GENERAL_LINKS</code> in config.js.')
-  );
-  document.getElementById("general-materials").appendChild(
-    buildList(GENERAL_MATERIALS, 'No materials yet — add to <code>GENERAL_MATERIALS</code> in config.js.')
-  );
+      notebook.appendChild(row);
+    });
+  }
 </script>
 
 </body>
