@@ -16,6 +16,22 @@ for (let i = 0; i < 24; i++) {
 
 document.body.appendChild(petalField);
 
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (!reducedMotion.matches) {
+  window.addEventListener("mousemove", (event) => {
+    const horizontalShift = ((event.clientX / window.innerWidth) - 0.5) * 14;
+    const verticalShift = ((event.clientY / window.innerHeight) - 0.5) * 14;
+    document.body.style.setProperty("--grid-x", horizontalShift.toFixed(2) + "px");
+    document.body.style.setProperty("--grid-y", verticalShift.toFixed(2) + "px");
+  });
+
+  window.addEventListener("mouseleave", () => {
+    document.body.style.setProperty("--grid-x", "0px");
+    document.body.style.setProperty("--grid-y", "0px");
+  });
+}
+
 const animationToggle = document.querySelector(".animation-toggle");
 let animationsDisabled = false;
 
