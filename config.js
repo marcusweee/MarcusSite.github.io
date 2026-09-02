@@ -100,6 +100,7 @@ const ANNOUNCEMENTS = [
 // org pages, references. Each entry is just a line of text; give it a url
 // to make that line a clickable link, or leave url "" for plain text/notes.
 const GENERAL_ITEMS = [
+  {text: "Officers Site", url: "https://sites.google.com/view/bsm3-1/home?fbclid=IwcGRvZgVleHRuA2FlbQIxMABicmlkETFONnJtSlpyVHRyR1J2SVI2c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpMFZM_q801u3vKVaBWsOIY2w8NC6zVFyDF-Pl2-8hFMgtpOXjjuV1PcXzZO_aem_OXxeET4YrRteeuaRLTC6jQ"},
   // { text: "PUP Student Portal", url: "" },
   // { text: "Bring your COR every enrollment day", url: "" },
 ];
