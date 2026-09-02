@@ -195,6 +195,97 @@ a {
   transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
+.effects-control {
+  position: relative;
+}
+
+.effects-button {
+  border: 1px solid var(--board-line);
+  border-radius: var(--radius);
+  padding: 4px 8px;
+  color: var(--chalk-dim);
+  background: rgba(238, 219, 237, 0.06);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.effects-button:hover,
+.effects-button[aria-expanded="true"] {
+  color: var(--chalk);
+  border-color: var(--yellow);
+  background: rgba(211, 154, 191, 0.12);
+}
+
+.effects-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 6;
+  display: none;
+  width: 190px;
+  padding: 8px;
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+.effects-menu.open {
+  display: block;
+}
+
+.effect-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding: 7px 5px;
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.effect-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.effect-option::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  border: 1px solid var(--card-edge);
+  border-radius: 2px;
+  background: rgba(41, 27, 43, 0.5);
+}
+
+.effect-option:has(input:checked)::before {
+  border-color: var(--yellow);
+  background: var(--yellow);
+}
+
+.effect-option:has(input:checked)::after {
+  position: absolute;
+  left: 10px;
+  top: 9px;
+  width: 4px;
+  height: 7px;
+  border-right: 2px solid var(--board);
+  border-bottom: 2px solid var(--board);
+  transform: rotate(45deg);
+}
+
+.effect-option:has(input:focus-visible)::before {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+
 .animation-toggle:hover,
 .animation-toggle[aria-pressed="true"],
 .music-control:hover,
@@ -1119,5 +1210,67 @@ button:focus-visible {
   .subject-card,
   .subject-card:hover {
     transition: none;
+  }
+}
+
+.falling-petals-off .petal-field {
+  display: none;
+}
+
+.petal-trail-field {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.click-ripple-field {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.click-ripple {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(224, 164, 204, 0.72);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(219, 156, 202, 0.28);
+  animation: click-ripple-expand 0.75s ease-out forwards;
+}
+
+@keyframes click-ripple-expand {
+  from {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4.2);
+  }
+}
+
+.cursor-petal {
+  position: absolute;
+  width: 7px;
+  height: 11px;
+  border-radius: 70% 30% 70% 30%;
+  background: rgba(224, 164, 204, 0.62);
+  box-shadow: 0 0 8px rgba(219, 156, 202, 0.35);
+  animation: cursor-petal-fade 0.9s ease-out forwards;
+}
+
+@keyframes cursor-petal-fade {
+  from {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--trail-drift)), calc(-50% + 26px)) rotate(180deg) scale(0.45);
   }
 }

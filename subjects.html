@@ -27,7 +27,15 @@
       <button class="music-menu-button" type="button" data-music-menu aria-label="Choose song" aria-expanded="false" title="Choose song"><span class="menu-icon" aria-hidden="true"></span></button>
       <div class="music-menu" aria-label="Songs"></div>
     </div>
-    <button class="animation-toggle" type="button" aria-pressed="false">Pause petals</button>
+    <div class="effects-control">
+      <button class="effects-button" type="button" aria-expanded="false" aria-controls="effects-menu">Effects</button>
+      <div class="effects-menu" id="effects-menu">
+        <label class="effect-option"><input type="checkbox" data-effect="falling-petals" /> Falling petals</label>
+        <label class="effect-option"><input type="checkbox" data-effect="petal-trail" /> Cursor petal trail</label>
+        <label class="effect-option"><input type="checkbox" data-effect="grid-parallax" /> Background grid parallax</label>
+        <label class="effect-option"><input type="checkbox" data-effect="click-ripple" /> Click ripple</label>
+      </div>
+    </div>
   </div>
 </nav>
 
