@@ -147,7 +147,7 @@ const ANNOUNCEMENTS = [
 //
 const GENERAL_ITEMS = [
   { heading: "Links" },
-  { text: "PUPSIS Site", url: "" },
+  { text: "PUPSIS Site", url: "https://sis8.pup.edu.ph/student/" },
   {
     text: "Officers Site",
     url: "https://sites.google.com/view/bsm3-1/home?fbclid=IwcGRvZgVleHRuA2FlbQIxMABicmlkETFONnJtSlpyVHRyR1J2SVI2c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpMFZM_q801u3vKVaBWsOIY2w8NC6zVFyDF-Pl2-8hFMgtpOXjjuV1PcXzZO_aem_OXxeET4YrRteeuaRLTC6jQ",
