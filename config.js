@@ -20,7 +20,8 @@ const SUBJECTS = [
       // { label: "Google Classroom", url: "" },
     ],
     materials: [
-      { label: "Week 1 – Instructional Materials (Drive folder)", url: "https://docs.google.com/folderview?id=1tyQq4ct3XWERE5Kp9PC3f6v4jnpnhmt_" },
+      { label: "Week 1 – Lesson 1", url: "https://drive.google.com/file/d/17gBoR73pNyEyS53XsLl_hxgx7ul1lE4y/view?usp=drive_web" },
+      { label: "Week 1 – Lesson 2", url: "https://drive.google.com/file/d/1e6RB9M3xUOJdN0hW4uAxmH-BiVoQwRPJ/view?usp=drive_web" },
     ],
     recordings: [
       { label: "Week 1 Recording", url: "https://www.youtube.com/watch?v=t23QCF1NXoE" },
@@ -131,6 +132,23 @@ const ANNOUNCEMENTS = [
   // { text: "Bring for the exam", bullets: ["Valid ID", "Calculator", "Blue book"], color: "blue" },
 ];
 
+// Add audio files to the Musics folder, then list them here.
+const MUSIC_TRACKS = [
+  { title: "biosphere - a simple bunny girl", url: "Musics/biosphere - a simple bunny girl.mp3" },
+  { title: "Burbank - Sorry, I Like You", url: "Musics/Burbank - Sorry, I Like You.mp3" },
+  { title: "Elijah Who - this girl", url: "Musics/Elijah Who - this girl.mp3" },
+  { title: "Elijah Who - we used to talk every night", url: "Musics/Elijah Who - we used to talk every night.mp3" },
+  { title: "frad - First Date", url: "Musics/frad - First Date.mp3" },
+  { title: "heiakim - forger", url: "Musics/heiakim - forger.mp3" },
+  { title: "potsu - bossa uh", url: "Musics/potsu - bossa uh.mp3" },
+  { title: "potsu - just friends", url: "Musics/potsu - just friends.mp3" },
+  { title: "potsu - [oops]", url: "Musics/potsu - [oops].mp3" },
+  { title: "rejucted - me n you ..", url: "Musics/rejucted - me n you ..mp3" },
+  { title: "Saib - in your arms", url: "Musics/Saib - in your arms.mp3" },
+  { title: "Streambeats - Kaleidoscope", url: "Musics/Streambeats - Kaleidoscope.mp3" },
+  { title: "ZOID LAND - midnight sun", url: "Musics/ZOID LAND - midnight sun (ramzoid llusion banakula).mp3" },
+];
+
 // General text/links that aren't tied to one subject — portal, enrollment,
 // org pages, references. Three kinds of entries, mix and match in any order:
 //
@@ -151,6 +169,23 @@ const GENERAL_ITEMS = [
   {
     text: "Officers Site",
     url: "https://sites.google.com/view/bsm3-1/home?fbclid=IwcGRvZgVleHRuA2FlbQIxMABicmlkETFONnJtSlpyVHRyR1J2SVI2c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpMFZM_q801u3vKVaBWsOIY2w8NC6zVFyDF-Pl2-8hFMgtpOXjjuV1PcXzZO_aem_OXxeET4YrRteeuaRLTC6jQ",
+  },
+  { heading: "Google Classrooms" },
+  {
+    text: "STAT 313 – Statistical Theory",
+    url: "https://classroom.google.com/u/5/c/ODc1MzU1Mjc3Mjk2",
+  },
+  {
+    text: "MATH 302 – Advanced Calculus 2",
+    url: "https://classroom.google.com/u/5/c/ODc1MjQzMjUwOTc1",
+  },
+  {
+    text: "MATH 303 – Graph Theory with Applications",
+    url: "https://classroom.google.com/u/5/c/ODc0NTk2MDYwNjk4",
+  },
+  {
+    text: "MATH 301 – Abstract Algebra 2",
+    url: "https://classroom.google.com/u/1/c/ODc0NTQ1ODg0OTI0",
   },
 ];
 

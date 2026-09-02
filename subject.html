@@ -14,6 +14,18 @@
     <a href="index.html">Home</a>
     <a href="subjects.html" class="active">Subjects</a>
     <a href="general.html">General</a>
+    <div class="music-player" aria-label="Music player">
+      <button class="music-control" type="button" data-music-previous aria-label="Previous song" title="Previous song">&#9198;</button>
+      <button class="music-control" type="button" data-music-play aria-label="Play or pause" title="Play or pause">&#9654;</button>
+      <button class="music-control" type="button" data-music-next aria-label="Next song" title="Next song">&#9197;</button>
+      <span class="music-track">No music added</span>
+      <input class="music-seek" type="range" min="0" max="0" value="0" step="0.1" data-music-seek aria-label="Song progress" />
+      <button class="volume-button" type="button" data-music-volume aria-label="Volume" aria-expanded="false" title="Volume"><span class="volume-icon" aria-hidden="true">&#9835;</span></button>
+      <div class="volume-panel">
+        <input class="volume-slider" type="range" min="0" max="1" value="0.1" step="0.05" data-music-volume-slider aria-label="Volume" />
+      </div>
+    </div>
+    <button class="animation-toggle" type="button" aria-pressed="false">Pause petals</button>
   </div>
 </nav>
 
@@ -22,6 +34,8 @@
 </div>
 
 <script src="config.js"></script>
+<script src="petals.js"></script>
+<script src="music.js"></script>
 <script>
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("c");
@@ -148,6 +162,10 @@
     return wrap;
   }
 
+  function isBackupRecording(item) {
+    return /backup/i.test(item.label || "");
+  }
+
   if (!subject) {
     app.innerHTML =
       '<div class="page-head"><h1>Subject not found</h1>' +
@@ -192,13 +210,23 @@
     const recordingsSection = document.createElement("div");
     recordingsSection.className = "detail-section";
     recordingsSection.innerHTML = "<h3>Recordings</h3>";
+    const recordings = (subject.recordings || []).filter((item) => !isBackupRecording(item));
+    const backupRecordings = (subject.recordings || []).filter(isBackupRecording);
     recordingsSection.appendChild(
-      buildRecordingList(subject.recordings, 'No recordings yet — add to this subject\'s <code>recordings</code> array in config.js.')
+      buildRecordingList(recordings, 'No recordings yet — add to this subject\'s <code>recordings</code> array in config.js.')
     );
 
     dgrid.appendChild(linksSection);
     dgrid.appendChild(materialsSection);
     dgrid.appendChild(recordingsSection);
+
+    if (backupRecordings.length > 0) {
+      const backupsSection = document.createElement("div");
+      backupsSection.className = "detail-section";
+      backupsSection.innerHTML = "<h3>Backup Recordings</h3>";
+      backupsSection.appendChild(buildRecordingList(backupRecordings));
+      dgrid.appendChild(backupsSection);
+    }
 
     paper.appendChild(code);
     paper.appendChild(h1);
