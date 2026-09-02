@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semester — Recordings</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="mark">semester<span>.</span></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="recordings.html" class="active">Recordings</a>
+    <a href="general.html">General</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>Recordings</h1>
+    <p>Every recorded session across your subjects, in one place.</p>
+  </div>
+
+  <div id="recordings-empty" class="setup-note" style="display:none;">
+    No recordings yet. They're pulled straight from each subject's
+    <code>recordings</code> array in config.js — add one there and it shows up here too.
+  </div>
+
+  <div class="notebook" id="recordings-list"></div>
+</div>
+
+<script src="config.js"></script>
+<script>
+  const list = document.getElementById("recordings-list");
+  let any = false;
+  let colorIndex = 0;
+
+  SUBJECTS.forEach((subject) => {
+    if (!subject.recordings || subject.recordings.length === 0) return;
+    any = true;
+
+    const heading = document.createElement("div");
+    heading.className = "notebook-heading";
+    heading.textContent = subject.code + " — " + subject.name;
+    list.appendChild(heading);
+
+    subject.recordings.forEach((rec) => {
+      const row = document.createElement("div");
+      row.className = "notebook-row" + (colorIndex % 2 === 1 ? " blue" : "");
+      colorIndex++;
+
+      const body = document.createElement("div");
+      body.className = "body";
+
+      const a = document.createElement("a");
+      a.className = "notebook-link";
+      a.href = rec.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = rec.label;
+      body.appendChild(a);
+
+      const arrow = document.createElement("span");
+      arrow.className = "arrow";
+      arrow.textContent = "↗";
+      body.appendChild(arrow);
+
+      row.appendChild(body);
+      list.appendChild(row);
+    });
+  });
+
+  if (!any) {
+    document.getElementById("recordings-empty").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
