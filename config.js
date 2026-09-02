@@ -95,6 +95,7 @@ const SUBJECTS = [
 // bullets is optional — add a short list under the text if it helps
 // (e.g. what to bring, what's covered).
 const ANNOUNCEMENTS = [
+  { text: "AYOKO NA MAG ARAL"}
   // { text: "Midterm exams start", due: "Oct 6", url: "", color: "yellow" },
   // { text: "Bring for the exam", bullets: ["Valid ID", "Calculator", "Blue book"], color: "blue" },
 ];
