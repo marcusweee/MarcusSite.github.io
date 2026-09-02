@@ -9,7 +9,7 @@
 <body>
 
 <nav class="site-nav">
-  <a href="index.html" class="mark">General<span><3</span></a>
+  <a href="index.html" class="mark">semester<span>.</span></a>
   <div class="links">
     <a href="index.html">Home</a>
     <a href="subjects.html">Subjects</a>
@@ -19,8 +19,8 @@
 
 <div class="wrap">
   <div class="page-head">
-    <h1>Quick links</h1>
-    <p>Type shitttt.</p>
+    <h1>General</h1>
+    <p>Notes and links that aren't tied to one subject — portal, enrollment, org pages.</p>
   </div>
 
   <div id="notebook-empty" class="setup-note" style="display:none;">
@@ -38,18 +38,24 @@
   if (!GENERAL_ITEMS || GENERAL_ITEMS.length === 0) {
     document.getElementById("notebook-empty").style.display = "block";
   } else {
+    let contentIndex = 0;
     GENERAL_ITEMS.forEach((item) => {
-      const row = document.createElement("div");
-      row.className = "notebook-row";
+      if (item.heading) {
+        const heading = document.createElement("div");
+        heading.className = "notebook-heading";
+        heading.textContent = item.heading;
+        notebook.appendChild(heading);
+        return;
+      }
 
-      const dot = document.createElement("span");
-      dot.className = "dot";
-      row.appendChild(dot);
+      const row = document.createElement("div");
+      row.className = "notebook-row" + (contentIndex % 2 === 1 ? " blue" : "");
+      contentIndex++;
 
       const body = document.createElement("div");
+      body.className = "body";
 
       if (item.url) {
-        body.className = "body";
         const a = document.createElement("a");
         a.className = "notebook-link";
         a.href = item.url;
@@ -57,20 +63,30 @@
         a.rel = "noopener";
         a.textContent = item.text;
         body.appendChild(a);
-      } else {
-        body.className = "body plain";
-        body.textContent = item.text;
-      }
 
-      row.appendChild(body);
-
-      if (item.url) {
         const arrow = document.createElement("span");
         arrow.className = "arrow";
         arrow.textContent = "↗";
-        row.appendChild(arrow);
+        body.appendChild(arrow);
+      } else if (item.text) {
+        body.classList.add("plain");
+        body.appendChild(document.createTextNode(item.text));
+      } else {
+        body.classList.add("plain");
       }
 
+      if (item.bullets && item.bullets.length > 0) {
+        const ul = document.createElement("ul");
+        ul.className = "sub-bullets";
+        item.bullets.forEach((b) => {
+          const li = document.createElement("li");
+          li.textContent = b;
+          ul.appendChild(li);
+        });
+        body.appendChild(ul);
+      }
+
+      row.appendChild(body);
       notebook.appendChild(row);
     });
   }

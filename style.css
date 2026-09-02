@@ -265,55 +265,115 @@ button:focus-visible {
   border-color: var(--yellow);
 }
 
-/* ---------- General page: ruled notebook list ---------- */
+.announce-card .sub-bullets {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.announce-card .sub-bullets li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+  margin-bottom: 4px;
+}
+
+.announce-card .sub-bullets li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+}
+
+.announce-card .sub-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- General page: card-style note list ---------- */
 
 .notebook {
-  border-top: 1px solid var(--board-line);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .notebook-row {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 15px 4px;
-  border-bottom: 1px solid var(--board-line);
+  display: block;
+  background: var(--card);
+  color: var(--ink);
+  border-left: 4px solid var(--yellow);
+  border-radius: 2px;
+  padding: 18px 22px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.24);
 }
 
-.notebook-row .dot {
-  flex-shrink: 0;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--yellow);
-  transform: translateY(-2px);
+.notebook-row.blue {
+  border-left-color: var(--blue);
 }
 
 .notebook-row .body {
-  flex: 1;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .notebook-row a.notebook-link {
-  color: var(--chalk);
+  color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid rgba(241, 237, 225, 0.35);
-  transition: border-color 0.15s ease, color 0.15s ease;
+  border-bottom: 2px solid var(--card-edge);
+  transition: border-color 0.15s ease;
 }
 
 .notebook-row a.notebook-link:hover {
   border-color: var(--yellow);
-  color: var(--yellow);
 }
 
 .notebook-row .body.plain {
-  color: var(--chalk-dim);
+  color: var(--ink);
 }
 
 .notebook-row .arrow {
-  flex-shrink: 0;
+  float: right;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  color: var(--chalk-dim);
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+
+.notebook-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--yellow);
+  padding: 22px 2px 2px;
+}
+
+.notebook-heading:first-child {
+  padding-top: 0;
+}
+
+.notebook-row .sub-bullets {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.notebook-row .sub-bullets li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15.5px;
+  color: var(--ink-dim);
+  margin-bottom: 7px;
+}
+
+.notebook-row .sub-bullets li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--ink-dim);
+}
+
+.notebook-row .sub-bullets li:last-child {
+  margin-bottom: 0;
 }
 
 /* ---------- Section label ---------- */

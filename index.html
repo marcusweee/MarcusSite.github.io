@@ -124,6 +124,17 @@
 
       card.appendChild(top);
 
+      if (item.bullets && item.bullets.length > 0) {
+        const ul = document.createElement("ul");
+        ul.className = "sub-bullets";
+        item.bullets.forEach((b) => {
+          const li = document.createElement("li");
+          li.textContent = b;
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+      }
+
       if (item.url) {
         const link = document.createElement("a");
         link.className = "announce-link";

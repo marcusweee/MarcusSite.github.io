@@ -92,18 +92,31 @@ const SUBJECTS = [
 // Notes and deadlines to keep in view on the homepage.
 // due is optional — plain reminders don't need one.
 // url is optional too — leave it "" for a plain announcement.
+// bullets is optional — add a short list under the text if it helps
+// (e.g. what to bring, what's covered).
 const ANNOUNCEMENTS = [
   // { text: "Midterm exams start", due: "Oct 6", url: "", color: "yellow" },
+  // { text: "Bring for the exam", bullets: ["Valid ID", "Calculator", "Blue book"], color: "blue" },
 ];
 
 // General text/links that aren't tied to one subject — portal, enrollment,
-// org pages, references. Each entry is just a line of text; give it a url
-// to make that line a clickable link, or leave url "" for plain text/notes.
+// org pages, references. Three kinds of entries, mix and match in any order:
+//
+//   { heading: "Enrollment" }
+//     — a section heading to break up the list.
+//
+//   { text: "PUP Student Portal", url: "https://..." }
+//     — a single line. Add url to make it a clickable link, or leave url ""
+//       (or drop it) for a plain note.
+//
+//   { text: "Requirements for enrollment", bullets: ["Bring your COR", "Pay assessment fee"] }
+//     — a line followed by an indented bullet list. You can also drop
+//       "text" and just use "bullets" for a standalone list with no intro.
+//
 const GENERAL_ITEMS = [
-  {text: "Officers Site", url: "https://sites.google.com/view/bsm3-1/home?fbclid=IwcGRvZgVleHRuA2FlbQIxMABicmlkETFONnJtSlpyVHRyR1J2SVI2c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpMFZM_q801u3vKVaBWsOIY2w8NC6zVFyDF-Pl2-8hFMgtpOXjjuV1PcXzZO_aem_OXxeET4YrRteeuaRLTC6jQ"},
-  {text: "PUPSIS Site", url: "https://sis8.pup.edu.ph/student/"}
-  // { text: "PUP Student Portal", url: "" },
-  // { text: "Bring your COR every enrollment day", url: "" },
+  { heading: "Enrollment" },
+  { text: "PUP Student Portal", url: "" },
+  { text: "Requirements for enrollment", bullets: ["Bring your COR", "Pay assessment fee"] },
 ];
 
 // Order used for the weekly schedule strip on the homepage.
