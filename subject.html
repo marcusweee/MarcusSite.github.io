@@ -153,8 +153,16 @@
       buildList(subject.materials, 'No materials yet — add to this subject\'s <code>materials</code> array in config.js.')
     );
 
+    const recordingsSection = document.createElement("div");
+    recordingsSection.className = "detail-section";
+    recordingsSection.innerHTML = "<h3>Recordings</h3>";
+    recordingsSection.appendChild(
+      buildList(subject.recordings, 'No recordings yet — add to this subject\'s <code>recordings</code> array in config.js.')
+    );
+
     dgrid.appendChild(linksSection);
     dgrid.appendChild(materialsSection);
+    dgrid.appendChild(recordingsSection);
 
     paper.appendChild(code);
     paper.appendChild(h1);
