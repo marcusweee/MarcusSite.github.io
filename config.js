@@ -61,9 +61,9 @@ const SUBJECTS = [
     ],
     recordings: [
       { label: "Week 1 Recording – Fundamental Theorem of Graph Theory", url: "https://www.youtube.com/watch?v=wuts5_OGlqI&t=7s" },
-      { label: "Week 1 Recording 2", url: "https://www.youtube.com/watch?v=jZOt1tjNpD8" },
+      { label: "Week 1 Recording 2 - Orientation", url: "https://www.youtube.com/watch?v=jZOt1tjNpD8" },
       { label: "Week 2.1 Recording – Join of Two Graphs", url: "https://www.youtube.com/watch?v=9OOsH6e2l8U&t=1s" },
-      { label: "Week 2.1 Recording 2", url: "https://www.youtube.com/watch?v=DzYI3xNUI-8" },
+      { label: "Week 2.1 Recording 2 - Trees And their properties", url: "https://www.youtube.com/watch?v=DzYI3xNUI-8" },
       { label: "Week 2.2 Recording – Corona of Graphs", url: "https://www.youtube.com/watch?v=k2xpsaQuQnE" },
     ],
   },
