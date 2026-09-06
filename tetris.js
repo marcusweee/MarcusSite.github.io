@@ -48,8 +48,9 @@ function makeBoard() {
 }
 
 function randomPiece() {
-  const shape = pieces[Math.floor(Math.random() * pieces.length)].map((row) => [...row]);
-  return { shape, color: Math.floor(Math.random() * colors.length), x: Math.floor((columns - shape[0].length) / 2), y: 0 };
+  const pieceType = Math.floor(Math.random() * pieces.length);
+  const shape = pieces[pieceType].map((row) => [...row]);
+  return { shape, color: pieceType, x: Math.floor((columns - shape[0].length) / 2), y: 0 };
 }
 
 function rotatePiece(shape) {
