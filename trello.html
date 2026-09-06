@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semester — Trello</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="mark">MarcusSite<span><3</span></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="general.html">General</a>
+    <a href="games.html">Games</a>
+    <a href="trello.html" class="active">Trello</a>
+    <div class="music-player" aria-label="Music player">
+      <button class="music-control" type="button" data-music-previous aria-label="Previous song" title="Previous song">&#9198;</button>
+      <button class="music-control" type="button" data-music-play aria-label="Play or pause" title="Play or pause">&#9654;</button>
+      <button class="music-control" type="button" data-music-next aria-label="Next song" title="Next song">&#9197;</button>
+      <span class="music-track">No music added</span>
+      <input class="music-seek" type="range" min="0" max="0" value="0" step="0.1" data-music-seek aria-label="Song progress" />
+      <button class="volume-button" type="button" data-music-volume aria-label="Volume" aria-expanded="false" title="Volume"><span class="volume-icon" aria-hidden="true">&#9835;</span></button>
+      <div class="volume-panel"><input class="volume-slider" type="range" min="0" max="1" value="0.05" step="0.01" data-music-volume-slider aria-label="Volume" /></div>
+      <button class="music-menu-button" type="button" data-music-menu aria-label="Choose song" aria-expanded="false" title="Choose song"><span class="menu-icon" aria-hidden="true"></span></button>
+      <div class="music-menu" aria-label="Songs"></div>
+    </div>
+    <div class="effects-control">
+      <button class="effects-button" type="button" aria-expanded="false" aria-controls="effects-menu">Effects</button>
+      <div class="effects-menu" id="effects-menu">
+        <label class="effect-option"><input type="checkbox" data-effect="falling-petals" /> Falling petals</label>
+        <label class="effect-option"><input type="checkbox" data-effect="petal-trail" /> Cursor petal trail</label>
+        <label class="effect-option"><input type="checkbox" data-effect="grid-parallax" /> Background grid parallax</label>
+        <label class="effect-option"><input type="checkbox" data-effect="click-ripple" /> Click ripple</label>
+        <label class="effect-option"><input type="checkbox" data-effect="roaming-cats" /> Roaming cats</label>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap trello-page">
+  <div class="page-head">
+    <h1>Trello</h1>
+    <p>Bring a public board into the site.</p>
+  </div>
+
+  <section class="trello-panel">
+    <div class="trello-toolbar">
+      <label for="trello-url">Public board URL</label>
+      <button id="add-trello-board" class="trello-add-button" type="button" aria-label="Add a Trello board" title="Add a Trello board"><span aria-hidden="true">+</span></button>
+      <input id="trello-url" type="url" placeholder="https://trello.com/b/your-board" autocomplete="url" />
+      <button id="load-trello" type="button">Load board</button>
+      <a href="https://trello.com/login" target="_blank" rel="noopener">Open Trello / Sign in ↗</a>
+    </div>
+    <p id="trello-status" class="trello-status">Enter a public Trello board URL to display it here.</p>
+    <div class="trello-frame-wrap" id="trello-frame-wrap" hidden>
+      <iframe id="trello-frame" title="Trello board" loading="lazy"></iframe>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="petals.js"></script>
+<script src="music.js"></script>
+<script>
+  const trelloUrl = document.getElementById("trello-url");
+  const loadTrello = document.getElementById("load-trello");
+  const trelloFrame = document.getElementById("trello-frame");
+  const trelloFrameWrap = document.getElementById("trello-frame-wrap");
+  const trelloStatus = document.getElementById("trello-status");
+  const addTrelloBoard = document.getElementById("add-trello-board");
+
+  function loadBoard() {
+    const value = trelloUrl.value.trim();
+    try {
+      const url = new URL(value);
+      if (url.hostname !== "trello.com" && !url.hostname.endsWith(".trello.com")) throw new Error();
+      trelloFrame.src = value.replace(/\/$/, "") + ".html";
+      trelloFrameWrap.hidden = false;
+      trelloStatus.textContent = "Board loaded. Trello may require the board to be public for embedding.";
+      localStorage.setItem("trello-board-url", value);
+    } catch (error) {
+      trelloFrameWrap.hidden = true;
+      trelloStatus.textContent = "Enter a valid Trello board URL, such as https://trello.com/b/your-board.";
+    }
+  }
+
+  trelloUrl.value = localStorage.getItem("trello-board-url") || "";
+  addTrelloBoard.addEventListener("click", () => {
+    trelloUrl.focus();
+    trelloUrl.select();
+  });
+  loadTrello.addEventListener("click", loadBoard);
+  trelloUrl.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") loadBoard();
+  });
+  if (trelloUrl.value) loadBoard();
+</script>
+</body>
+</html>

@@ -1568,6 +1568,93 @@ button:focus-visible {
   color: var(--chalk-dim) !important;
 }
 
+/* ---------- Trello ---------- */
+
+.trello-panel {
+  padding: 18px;
+  border: 1px solid var(--card-edge);
+  background: rgba(59, 41, 64, 0.64);
+  box-shadow: 0 10px 24px rgba(12, 7, 15, 0.2);
+}
+
+.trello-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.trello-toolbar label {
+  color: var(--chalk-dim);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+}
+
+.trello-toolbar input {
+  min-width: 260px;
+  flex: 1 1 300px;
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius);
+  padding: 9px 11px;
+  color: var(--ink);
+  background: rgba(41, 27, 43, 0.7);
+  font: inherit;
+}
+
+.trello-toolbar button,
+.trello-toolbar a {
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  color: var(--chalk);
+  background: rgba(211, 154, 191, 0.1);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.trello-toolbar .trello-add-button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  padding: 0;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.trello-toolbar button:hover,
+.trello-toolbar a:hover {
+  border-color: var(--yellow);
+  background: rgba(211, 154, 191, 0.18);
+}
+
+.trello-status {
+  margin: 14px 0;
+  color: var(--chalk-dim);
+  font-size: 14px;
+}
+
+.trello-frame-wrap {
+  min-height: 620px;
+  overflow: hidden;
+  border: 1px solid var(--card-edge);
+  background: var(--board-light);
+}
+
+.trello-frame-wrap[hidden] {
+  display: none;
+}
+
+.trello-frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 720px;
+  border: 0;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
@@ -1677,6 +1764,29 @@ button:focus-visible {
   .game-section-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .trello-panel {
+    padding: 12px;
+  }
+
+  .trello-toolbar input {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+
+  .trello-toolbar button,
+  .trello-toolbar a {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .trello-frame-wrap {
+    min-height: 520px;
+  }
+
+  .trello-frame-wrap iframe {
+    height: 640px;
   }
 
   .game-card {
