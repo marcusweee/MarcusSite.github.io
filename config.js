@@ -17,7 +17,7 @@ const SUBJECTS = [
       { day: "Thu", start: "6:00 PM", end: "7:30 PM", room: "" },
     ],
     links: [
-      // { label: "Google Classroom", url: "" },
+      { label: "Google Classroom", url: "https://classroom.google.com/u/1/c/ODc0NTQ1ODg0OTI0" },
     ],
     materials: [
       { label: "Week 1 – Lesson 1", url: "https://drive.google.com/file/d/17gBoR73pNyEyS53XsLl_hxgx7ul1lE4y/view?usp=drive_web" },
@@ -36,7 +36,9 @@ const SUBJECTS = [
     schedule: [
       { day: "Mon", start: "10:30 AM", end: "1:30 PM", room: "" },
     ],
-    links: [],
+    links: [
+      { label: "Google Classroom", url: "https://classroom.google.com/u/5/c/ODc1MjQzMjUwOTc1" },
+    ],
     materials: [
       { label: "Week 1 Beamer (Google Classroom)", url: "https://classroom.google.com/c/ODc1MjQzMjUwOTc1/m/ODc1NTcwOTc5MTA2/details" },
     ],
@@ -55,9 +57,12 @@ const SUBJECTS = [
       { day: "Mon", start: "3:00 PM", end: "4:30 PM", room: "" },
       { day: "Thu", start: "3:00 PM", end: "4:30 PM", room: "" },
     ],
-    links: [],
+    links: [
+      { label: "Google Classroom", url: "https://classroom.google.com/u/5/c/ODc0NTk2MDYwNjk4" },
+    ],
     materials: [
       { label: "Syllabus & Books (Drive folder)", url: "https://drive.google.com/drive/folders/1p_fiEL7iiuHAldoPGs6brUbQLpm4ysav" },
+      { label: "GTA Syllabus", url: "https://drive.google.com/file/d/1UZ6Nq3jdh0N55oOUDDAPlJjpM2PVoINz/view?usp=classroom_web&authuser=5" },
     ],
     recordings: [
       { label: "Week 1 Recording – Fundamental Theorem of Graph Theory", url: "https://www.youtube.com/watch?v=wuts5_OGlqI&t=7s" },
@@ -65,6 +70,7 @@ const SUBJECTS = [
       { label: "Week 2.1 Recording – Join of Two Graphs", url: "https://www.youtube.com/watch?v=9OOsH6e2l8U&t=1s" },
       { label: "Week 2.1 Recording 2 - Trees And their properties", url: "https://www.youtube.com/watch?v=DzYI3xNUI-8" },
       { label: "Week 2.2 Recording – Corona of Graphs", url: "https://www.youtube.com/watch?v=k2xpsaQuQnE" },
+      { label: "Week 3 Backup Recording", url: "https://youtu.be/J7l6KiKBo2U" },
     ],
   },
   {
@@ -76,8 +82,10 @@ const SUBJECTS = [
     ],
     links: [],
     materials: [
+      { label: "Differentiation & Integration Formulas", url: "https://www.pas.rochester.edu/~arijit/c02.pdf" },
       { label: "CLASS ORIENTATION - DE (FIRST SEM 26-27).pdf", url: "https://pupedu-my.sharepoint.com/:b:/g/personal/rrbernardino_pup_edu_ph/IQD1Qjcl1SvlRbJ0aA-6vNt7Ae2lIyXBWG4DJveKD3A7H-g?e=vt1wAH" },
       { label: "Week 2 – Vids & Beamer (OneDrive folder)", url: "https://pupedu-my.sharepoint.com/personal/rrbernardino_pup_edu_ph/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Frrbernardino_pup_edu_ph%2FDocuments%2FDIFFERENTIAL%20EQUATIONS%20(2026)&ga=1" },
+      { label: "Week 2 – Vids & Beamer (Google Drive folder)", url: "https://drive.google.com/drive/folders/1iA-J9A4eHbBGf8cm-hzDsPABHmxv3rqA?usp=drive_link" },
     ],
     recordings: [
       { label: "Recording (Exam 1)", url: "https://www.youtube.com/watch?v=xRxqHdkFBY0" },
@@ -94,7 +102,9 @@ const SUBJECTS = [
       { day: "Wed", start: "4:30 PM", end: "7:30 PM", room: "Face-to-face" },
       { day: "Sat", start: "2:30 PM", end: "5:30 PM", room: "Online" },
     ],
-    links: [],
+    links: [
+      { label: "Google Classroom", url: "https://classroom.google.com/u/5/c/ODc1MzU1Mjc3Mjk2" },
+    ],
     materials: [],
     recordings: [],
   },
@@ -128,8 +138,9 @@ const SUBJECTS = [
 // bullets is optional — add a short list under the text if it helps
 // (e.g. what to bring, what's covered).
 const ANNOUNCEMENTS = [
-  // { text: "Midterm exams start", due: "Oct 6", url: "", color: "yellow" },
-  // { text: "Bring for the exam", bullets: ["Valid ID", "Calculator", "Blue book"], color: "blue" },
+  { text: "GTA Problem Set 1", due: "Sep 19, 2026", color: "yellow" },
+  { text: "ECON Asynchronous Activity #1", color: "blue" },
+  { text: "STAT Assignment #1", due: "Sep 12, 2026 at 1:30 PM", color: "yellow" },
 ];
 
 // Add audio files to the Musics folder, then list them here.
