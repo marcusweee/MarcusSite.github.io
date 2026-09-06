@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semester — Games</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="mark">MarcusSite<span><3</span></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="general.html">General</a>
+    <a href="games.html" class="active">Games</a>
+    <div class="music-player" aria-label="Music player">
+      <button class="music-control" type="button" data-music-previous aria-label="Previous song" title="Previous song">&#9198;</button>
+      <button class="music-control" type="button" data-music-play aria-label="Play or pause" title="Play or pause">&#9654;</button>
+      <button class="music-control" type="button" data-music-next aria-label="Next song" title="Next song">&#9197;</button>
+      <span class="music-track">No music added</span>
+      <input class="music-seek" type="range" min="0" max="0" value="0" step="0.1" data-music-seek aria-label="Song progress" />
+      <button class="volume-button" type="button" data-music-volume aria-label="Volume" aria-expanded="false" title="Volume"><span class="volume-icon" aria-hidden="true">&#9835;</span></button>
+      <div class="volume-panel"><input class="volume-slider" type="range" min="0" max="1" value="0.05" step="0.01" data-music-volume-slider aria-label="Volume" /></div>
+      <button class="music-menu-button" type="button" data-music-menu aria-label="Choose song" aria-expanded="false" title="Choose song"><span class="menu-icon" aria-hidden="true"></span></button>
+      <div class="music-menu" aria-label="Songs"></div>
+    </div>
+    <div class="effects-control">
+      <button class="effects-button" type="button" aria-expanded="false" aria-controls="effects-menu">Effects</button>
+      <div class="effects-menu" id="effects-menu">
+        <label class="effect-option"><input type="checkbox" data-effect="falling-petals" /> Falling petals</label>
+        <label class="effect-option"><input type="checkbox" data-effect="petal-trail" /> Cursor petal trail</label>
+        <label class="effect-option"><input type="checkbox" data-effect="grid-parallax" /> Background grid parallax</label>
+        <label class="effect-option"><input type="checkbox" data-effect="click-ripple" /> Click ripple</label>
+        <label class="effect-option"><input type="checkbox" data-effect="roaming-cats" /> Roaming cats</label>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap games-page">
+  <div class="page-head">
+    <h1>Games</h1>
+    <p>A small corner for taking five.</p>
+  </div>
+
+  <section id="game-selection" class="game-selection" aria-labelledby="game-selection-title">
+    <div class="game-section-heading">
+      <div>
+        <p class="section-label">Arcade</p>
+        <h2 id="game-selection-title">Choose a game</h2>
+      </div>
+      <button class="leaderboard-button" type="button" data-show-leaderboard>Leaderboards</button>
+    </div>
+    <button class="game-card" type="button" data-start-tetris>
+      <span class="game-card-preview" aria-hidden="true">▦</span>
+      <span class="game-card-copy"><strong>Tetris</strong><small>Clear lines, climb levels, chase a four-row clear.</small></span>
+      <span class="game-card-arrow" aria-hidden="true">→</span>
+    </button>
+  </section>
+
+  <section id="tetris-game" class="tetris-layout" hidden aria-labelledby="tetris-title">
+    <div class="game-section-heading">
+      <div>
+        <p class="section-label">Arcade / Tetris</p>
+        <h2 id="tetris-title">Tetris</h2>
+      </div>
+      <button class="back-games-button" type="button" data-back-games>All games</button>
+    </div>
+    <div class="tetris-shell">
+      <div class="tetris-board-wrap">
+        <canvas id="tetris-board" width="300" height="600" aria-label="Tetris board"></canvas>
+        <div class="tetris-overlay" id="tetris-overlay">
+          <strong>Ready?</strong>
+          <button type="button" data-play-tetris>Start game</button>
+        </div>
+      </div>
+      <aside class="tetris-side">
+        <div class="tetris-stats">
+          <div><span>Score</span><strong id="tetris-score">0</strong></div>
+          <div><span>Level</span><strong id="tetris-level">1</strong></div>
+          <div><span>Lines</span><strong id="tetris-lines">0</strong></div>
+        </div>
+        <div class="next-piece-box"><span>Next</span><canvas id="tetris-next" width="120" height="90" aria-label="Next piece"></canvas></div>
+        <div class="next-piece-box"><span>Hold</span><canvas id="tetris-hold" width="120" height="90" aria-label="Held piece"></canvas></div>
+        <div class="tetris-touch-controls" aria-label="Touch controls">
+          <button type="button" data-tetris-control="rotate" aria-label="Rotate piece">↻</button>
+          <button type="button" data-tetris-control="counter-rotate" aria-label="Rotate piece counter-clockwise">↺</button>
+          <button type="button" data-tetris-control="left" aria-label="Move left">←</button>
+          <button type="button" data-tetris-control="down" aria-label="Soft drop">↓</button>
+          <button type="button" data-tetris-control="right" aria-label="Move right">→</button>
+          <button type="button" data-tetris-control="hold" aria-label="Hold piece">Hold</button>
+          <button type="button" class="drop-control" data-tetris-control="hard-drop" aria-label="Hard drop">Drop</button>
+        </div>
+        <button class="restart-button" type="button" data-restart-tetris>Restart</button>
+        <p class="game-hint">Use arrow keys to move, Up to rotate, Space to drop.</p>
+      </aside>
+      <aside class="side-leaderboard"><div class="side-leaderboard-heading"><span>Top scores</span><button type="button" data-show-leaderboard>View all</button></div><ol id="tetris-side-leaderboard" class="leaderboard-list"></ol></aside>
+    </div>
+  </section>
+
+  <section id="leaderboard-panel" class="leaderboard-panel" hidden aria-labelledby="leaderboard-title">
+    <div class="game-section-heading">
+      <div><p class="section-label">Scores</p><h2 id="leaderboard-title">Tetris leaderboard</h2></div>
+      <button class="back-games-button" type="button" data-hide-leaderboard>Back</button>
+    </div>
+    <ol id="tetris-leaderboard" class="leaderboard-list"></ol>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="petals.js"></script>
+<script src="music.js"></script>
+<script src="tetris.js"></script>
+</body>
+</html>
