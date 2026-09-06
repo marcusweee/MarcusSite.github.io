@@ -55,8 +55,8 @@
       <a href="https://trello.com/login" target="_blank" rel="noopener">Open Trello / Sign in ↗</a>
     </div>
     <p id="trello-status" class="trello-status">Enter a public Trello board URL to display it here.</p>
-    <div class="trello-frame-wrap" id="trello-frame-wrap" hidden>
-      <iframe id="trello-frame" title="Trello board" loading="lazy"></iframe>
+    <div class="trello-board-wrap" id="trello-board-wrap" hidden>
+      <div class="trello-board" id="trello-board"></div>
     </div>
   </section>
 </main>
@@ -67,23 +67,51 @@
 <script>
   const trelloUrl = document.getElementById("trello-url");
   const loadTrello = document.getElementById("load-trello");
-  const trelloFrame = document.getElementById("trello-frame");
-  const trelloFrameWrap = document.getElementById("trello-frame-wrap");
+  const trelloBoard = document.getElementById("trello-board");
+  const trelloBoardWrap = document.getElementById("trello-board-wrap");
   const trelloStatus = document.getElementById("trello-status");
   const addTrelloBoard = document.getElementById("add-trello-board");
 
-  function loadBoard() {
+  function renderBoard(data, boardUrl) {
+    trelloBoard.innerHTML = "";
+    data.lists.filter((list) => !list.closed).sort((a, b) => a.pos - b.pos).forEach((list) => {
+      const column = document.createElement("section");
+      column.className = "trello-list";
+      const heading = document.createElement("h2");
+      heading.textContent = list.name;
+      const cards = document.createElement("div");
+      cards.className = "trello-cards";
+      data.cards.filter((card) => !card.closed && card.idList === list.id).sort((a, b) => a.pos - b.pos).forEach((card) => {
+        const cardLink = document.createElement("a");
+        cardLink.className = "trello-card";
+        cardLink.href = card.url || boardUrl;
+        cardLink.target = "_blank";
+        cardLink.rel = "noopener";
+        cardLink.textContent = card.name;
+        cards.appendChild(cardLink);
+      });
+      column.appendChild(heading);
+      column.appendChild(cards);
+      trelloBoard.appendChild(column);
+    });
+    trelloBoard.style.gridTemplateColumns = "repeat(" + trelloBoard.children.length + ", minmax(0, 1fr))";
+    trelloBoardWrap.hidden = false;
+  }
+
+  async function loadBoard() {
     const value = trelloUrl.value.trim();
     try {
       const url = new URL(value);
       if (url.hostname !== "trello.com" && !url.hostname.endsWith(".trello.com")) throw new Error();
-      trelloFrame.src = value.replace(/\/$/, "") + ".html";
-      trelloFrameWrap.hidden = false;
-      trelloStatus.textContent = "Board loaded. Trello may require the board to be public for embedding.";
+      trelloStatus.textContent = "Loading public board...";
+      const response = await fetch(value.replace(/\/$/, "") + ".json");
+      if (!response.ok) throw new Error();
+      renderBoard(await response.json(), value);
+      trelloStatus.textContent = "Board loaded. Select a card to open it on Trello.";
       localStorage.setItem("trello-board-url", value);
     } catch (error) {
-      trelloFrameWrap.hidden = true;
-      trelloStatus.textContent = "Enter a valid Trello board URL, such as https://trello.com/b/your-board.";
+      trelloBoardWrap.hidden = true;
+      trelloStatus.textContent = "The board could not be loaded. Make sure it is public, then open it directly on Trello.";
     }
   }
 
