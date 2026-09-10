@@ -27,6 +27,7 @@ const SUBJECTS = [
       { label: "Week 1 Recording", url: "https://www.youtube.com/watch?v=t23QCF1NXoE" },
       { label: "Week 1.2 Recording", url: "https://www.youtube.com/watch?v=n9TbwXuZ5_0" },
       { label: "Week 1.2 Backup Recording", url: "https://www.youtube.com/watch?v=EkU0H9PDALY" },
+      { label: "Week 4 Backup Recording", url: "https://youtu.be/PA_VcnS3sOg" },
     ],
   },
   {
@@ -45,6 +46,7 @@ const SUBJECTS = [
     recordings: [
       { label: "Recording (Exam 1)", url: "https://www.youtube.com/watch?v=Q9H0hbxOWHs" },
       { label: "Orientation Recording", url: "http://youtube.com/watch?v=wkF0ocbC4HI" },
+      { label: "Lesson 1.2 Recording", url: "https://www.youtube.com/watch?v=MfHMdL0kirQ" },
       { label: "Week 1 Backup Recording 1", url: "https://www.youtube.com/watch?v=-BQvDx3aYQQ" },
       { label: "Week 1 Backup Recording 2", url: "https://www.youtube.com/watch?v=PebFLJ_u7TY&t=10s" },
     ],
@@ -139,8 +141,10 @@ const SUBJECTS = [
 // (e.g. what to bring, what's covered).
 const ANNOUNCEMENTS = [
   { text: "GTA Problem Set 1", due: "Sep 19, 2026", color: "yellow" },
-  { text: "ECON Asynchronous Activity #1", color: "blue" },
+  { text: "LONG EXAM 1 - Advanced Calculus 2", due: "Sep 28, 2026 | Online | Individual | 10:30 AM to 1:30 PM", bullets: ["Coverage: Metric Spaces to Complete Metric Spaces", "Level of Difficulty: Hard"], color: "blue" },
+  { text: "ECON Asynchronous Activity #1", due: "Sep 11, 2026", color: "blue" },
   { text: "STAT Assignment #1", due: "Sep 12, 2026 at 1:30 PM", color: "yellow" },
+  { text: "EDE Group Activity #1", due: "Sep 16, 2026 at 11:59 PM", color: "blue" },
 ];
 
 // Add audio files to the Musics folder, then list them here.
